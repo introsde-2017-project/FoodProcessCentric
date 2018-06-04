@@ -19,7 +19,7 @@ import introsde.project.data.local.soap.Person;
 import introsde.project.process.food.rest.model.BusinessService;
 
 @Path("/quotes")
-public class Quotes {
+public class QuoteResource {
 	
 	@Path("/get")
     @GET
