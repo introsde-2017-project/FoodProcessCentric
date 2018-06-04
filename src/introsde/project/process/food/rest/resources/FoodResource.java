@@ -111,6 +111,7 @@ public class FoodResource {
 	    		return Response.status(Response.Status.UNAUTHORIZED).build();
 	    	}
 	    }
+	    
     
 	//TODO not used
     @Path("/modifyrating/f")
