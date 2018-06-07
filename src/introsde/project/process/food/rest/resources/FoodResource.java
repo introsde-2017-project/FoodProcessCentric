@@ -106,7 +106,6 @@ public class FoodResource {
 	    }
 	    
 	    
-	    //TODO used for analysis
 	    @Path("/getall/f")
 	    @GET
 	    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
@@ -137,31 +136,6 @@ public class FoodResource {
 	}
     
     
-//    private Person getAuthentication(String authCredentials) {
-//    	if (null == authCredentials)
-//			return null;
-//		// header value format will be "Basic encodedstring" for Basic
-//		// authentication. Example "Basic YWRtaW46YWRtaW4="
-//		final String encodedUserPassword = authCredentials.replaceFirst("Basic"
-//				+ " ", "");
-//		String usernameAndPassword = null;
-//		try {
-//			byte[] decodedBytes = Base64.getDecoder().decode(
-//					encodedUserPassword);
-//			usernameAndPassword = new String(decodedBytes, "UTF-8");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		final StringTokenizer tokenizer = new StringTokenizer(
-//				usernameAndPassword, ":");
-//		final String username = tokenizer.nextToken();
-//		final String password = tokenizer.nextToken();
-//
-//		Person p=BusinessService.getPersonByU(username);
-//		if(p.getPassword().equals(password))
-//			return p;
-//		else
-//			return null;
-//	}
+
 
 }

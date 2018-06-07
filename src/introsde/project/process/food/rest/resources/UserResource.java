@@ -17,8 +17,6 @@ import introsde.project.process.food.rest.model.BusinessService;
 import introsde.project.process.food.rest.model.Credentials;
 import introsde.project.process.food.rest.model.randomStringGenerator;
 
-//import java.util.Base64;
-//import java.util.List;
 
 @Path("/user")
 public class UserResource {
@@ -120,37 +118,22 @@ public class UserResource {
         }
     }
     
-    //TODO to be removed
-    //this returns the list of usernames of all the user saved in user DATABASE
-    @Path("/getallusers")
-    @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response getAll(){
-        	return Response.ok(BusinessService.getAllUsers()).build();
-    }
-    
-    //TODO to be removed
-    //this returns the list of usernames of all the user saved in user DATABASE
-    @Path("/getallfoods")
-    @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response getAllFoods(){
-        	return Response.ok(BusinessService.getAllFoods()).build();
-    }
-    
-   
-    
-//    //get all the ratings evaluated by a user, by user's username
-//    @Path("/getratings/u/{userName}")
+//    //this returns the list of usernames of all the user saved in user DATABASE
+//    @Path("/getallusers")
 //    @GET
 //    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public List<Evaluation> getFoodRatings(@PathParam("userName") String userName, @HeaderParam("authorization") String authString){
-//		Person person= getAuthentication(authString);
-//        if(person==null)
-//        	return null;
-//        else
-//        	return BusinessService.getUserRatings(userName);
+//    public Response getAll(){
+//        	return Response.ok(BusinessService.getAllUsers()).build();
 //    }
+//    
+//    //this returns the list of usernames of all the user saved in user DATABASE
+//    @Path("/getallfoods")
+//    @GET
+//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+//    public Response getAllFoods(){
+//        	return Response.ok(BusinessService.getAllFoods()).build();
+//    }
+    
     
     private Person getAuthentication(String username, String password) throws Exception{
 		Person p=BusinessService.getPersonByU(username);
@@ -160,20 +143,6 @@ public class UserResource {
 			throw new Exception(" invalid username password");
 		
 	}
-    
-//    //admin can add new food in the Recombee DataBase
-//    @Path("/admin/add/f/{foodName}/{foodType}/{location}")
-//    @POST
-//    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-//    public ItemObject addNewFood(@HeaderParam("authorization") String authString, 
-//    		@PathParam("foodName") String foodName, 
-//    		@PathParam("foodType") String foodType,
-//    		@PathParam("location") String location){
-//		if(!admin(authString))
-//			return null;
-//        else
-//        	return BusinessService.addNewFood(foodName,foodType,location);
-//    }
     
 
 	private String issueToken(Person u) throws Exception {
@@ -190,32 +159,7 @@ public class UserResource {
     		throw new Exception();
     	return u;
 	}
-    
-//    private boolean admin(String authCredentials) {
-//    	if (null == authCredentials)
-//			return false;
-//		// header value format will be "Basic encodedstring" for Basic
-//		// authentication. Example "Basic YWRtaW46YWRtaW4="
-//		final String encodedUserPassword = authCredentials.replaceFirst("Basic"
-//				+ " ", "");
-//		String usernameAndPassword = null;
-//		try {
-//			byte[] decodedBytes = Base64.getDecoder().decode(
-//					encodedUserPassword);
-//			usernameAndPassword = new String(decodedBytes, "UTF-8");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		final StringTokenizer tokenizer = new StringTokenizer(
-//				usernameAndPassword, ":");
-//		final String username = tokenizer.nextToken();
-//		final String password = tokenizer.nextToken();
-//
-//		if(username.equals("admin") && password.equals("password"))
-//			return true;
-//		else
-//			return false;
-//	}
+
     
 //    private Person getAuthentication(String authCredentials) {
 //    	if (null == authCredentials)
