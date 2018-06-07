@@ -104,30 +104,6 @@ public interface BusinessInterface {
 
     /**
      * 
-     * @param itemName
-     * @param itemType
-     * @param dbName
-     * @param location
-     * @return
-     *     returns introsde.project.adopter.recombee.soap.ItemObject
-     */
-    @WebMethod
-    @WebResult(name = "StringId", targetNamespace = "")
-    @RequestWrapper(localName = "addNewItem", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.AddNewItem")
-    @ResponseWrapper(localName = "addNewItemResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.AddNewItemResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/addNewItemRequest", output = "http://soap.business.project.introsde/BusinessInterface/addNewItemResponse")
-    public ItemObject addNewItem(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "itemName", targetNamespace = "")
-        String itemName,
-        @WebParam(name = "itemType", targetNamespace = "")
-        String itemType,
-        @WebParam(name = "location", targetNamespace = "")
-        String location);
-
-    /**
-     * 
      * @param dbName
      * @param rating
      * @return
@@ -143,42 +119,6 @@ public interface BusinessInterface {
         RecombeeDBType dbName,
         @WebParam(name = "rating", targetNamespace = "")
         Evaluation rating);
-
-    /**
-     * 
-     * @param dbName
-     * @param rating
-     * @return
-     *     returns boolean
-     */
-    @WebMethod
-    @WebResult(name = "boolean", targetNamespace = "")
-    @RequestWrapper(localName = "modifyRating", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.ModifyRating")
-    @ResponseWrapper(localName = "modifyRatingResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.ModifyRatingResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/modifyRatingRequest", output = "http://soap.business.project.introsde/BusinessInterface/modifyRatingResponse")
-    public boolean modifyRating(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "rating", targetNamespace = "")
-        Evaluation rating);
-
-    /**
-     * 
-     * @param itemName
-     * @param dbName
-     * @return
-     *     returns java.util.List<introsde.project.adopter.recombee.soap.Evaluation>
-     */
-    @WebMethod
-    @WebResult(name = "ratingList", targetNamespace = "")
-    @RequestWrapper(localName = "getItemRatings", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemRatings")
-    @ResponseWrapper(localName = "getItemRatingsResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemRatingsResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getItemRatingsRequest", output = "http://soap.business.project.introsde/BusinessInterface/getItemRatingsResponse")
-    public List<Evaluation> getItemRatings(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "itemName", targetNamespace = "")
-        String itemName);
 
     /**
      * 
@@ -200,6 +140,21 @@ public interface BusinessInterface {
 
     /**
      * 
+     * @param dbName
+     * @return
+     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
+     */
+    @WebMethod
+    @WebResult(name = "ListofStrings", targetNamespace = "")
+    @RequestWrapper(localName = "getAllItem", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItem")
+    @ResponseWrapper(localName = "getAllItemResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItemResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getAllItemRequest", output = "http://soap.business.project.introsde/BusinessInterface/getAllItemResponse")
+    public List<ItemObject> getAllItem(
+        @WebParam(name = "dbName", targetNamespace = "")
+        RecombeeDBType dbName);
+
+    /**
+     * 
      * @param quantity
      * @param person
      * @param dbName
@@ -218,21 +173,6 @@ public interface BusinessInterface {
         Person person,
         @WebParam(name = "quantity", targetNamespace = "")
         int quantity);
-
-    /**
-     * 
-     * @param dbName
-     * @return
-     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
-     */
-    @WebMethod
-    @WebResult(name = "ListofStrings", targetNamespace = "")
-    @RequestWrapper(localName = "getAllItem", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItem")
-    @ResponseWrapper(localName = "getAllItemResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItemResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getAllItemRequest", output = "http://soap.business.project.introsde/BusinessInterface/getAllItemResponse")
-    public List<ItemObject> getAllItem(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName);
 
     /**
      * 
@@ -278,23 +218,5 @@ public interface BusinessInterface {
     public Person getPersonByToken(
         @WebParam(name = "token", targetNamespace = "")
         String token);
-
-    /**
-     * 
-     * @param itemName
-     * @param dbName
-     * @return
-     *     returns introsde.project.adopter.recombee.soap.ItemObject
-     */
-    @WebMethod
-    @WebResult(name = "ItemObject", targetNamespace = "")
-    @RequestWrapper(localName = "getItem", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItem")
-    @ResponseWrapper(localName = "getItemResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getItemRequest", output = "http://soap.business.project.introsde/BusinessInterface/getItemResponse")
-    public ItemObject getItem(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "itemName", targetNamespace = "")
-        String itemName);
 
 }

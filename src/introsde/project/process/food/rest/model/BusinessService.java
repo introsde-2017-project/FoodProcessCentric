@@ -3,9 +3,7 @@ package introsde.project.process.food.rest.model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import introsde.project.adopter.recombee.soap.Evaluation;
 import introsde.project.adopter.recombee.soap.ItemObject;
@@ -38,31 +36,24 @@ public class BusinessService {
 		return serviceInt.addNewRating(dbName, rating);
 	}
 
-	@SuppressWarnings("unchecked")
-	public static Map<String,Object> getFood(String foodName) {
-		return (Map<String, Object>) serviceInt.getItem(dbName, foodName);
-	}
+//	@SuppressWarnings("unchecked")
+//	public static Map<String,Object> getFood(String foodName) {
+//		return (Map<String, Object>) serviceInt.getItem(dbName, foodName);
+//	}
 
 	public static List<Evaluation> getUserRatings(Person u) {
-		List<Evaluation> e= new LinkedList<Evaluation>();
-		for(Evaluation ev:serviceInt.getUserRatings(dbName, u)) {
-			System.out.println(ev.getItemId());
-			double r=ev.getRating();
-			ev.setRating((r*2)+3);
-			e.add(ev);
-		}
-		return e;
+		return serviceInt.getUserRatings(dbName, u);
 	}
 
-	//TODO not used
-	public static boolean modifyRating(Person person, Evaluation rating) {
-		return serviceInt.modifyRating(dbName, rating);
-	}
-
-	//TODO not used
-	public static List<Evaluation> getFoodRatings(String foodName) {
-		return serviceInt.getItemRatings(dbName, foodName);
-	}
+//	//TODO not used
+//	public static boolean modifyRating(Person person, Evaluation rating) {
+//		return serviceInt.modifyRating(dbName, rating);
+//	}
+//
+//	//TODO not used
+//	public static List<Evaluation> getFoodRatings(String foodName) {
+//		return serviceInt.getItemRatings(dbName, foodName);
+//	}
 
 	//TODO not used
 	public static List<Person> getAllUsers() {

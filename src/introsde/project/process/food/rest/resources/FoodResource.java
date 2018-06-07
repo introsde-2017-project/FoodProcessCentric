@@ -1,14 +1,8 @@
 package introsde.project.process.food.rest.resources;
 
-import java.io.IOException;
-import java.util.Base64;
-import java.util.List;
-import java.util.StringTokenizer;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,7 +11,6 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import introsde.project.adopter.recombee.soap.Evaluation;
 import introsde.project.data.local.soap.Person;
 import introsde.project.process.food.rest.model.BusinessService;
 
@@ -112,30 +105,27 @@ public class FoodResource {
 	    	}
 	    }
 	    
-    
-	//TODO not used
-    @Path("/modifyrating/f")
-    @PUT
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public boolean modifyRatings(Evaluation rating, @HeaderParam("authorization") String authString){
-		Person person= getAuthentication(authString);
-        if(person==null || BusinessService.getFood(rating.getItemId())==null)
-        	return false;
-        else
-        	return BusinessService.modifyRating(person, rating);
-    }
-    
-    //TODO not used
-    @Path("/getratings/f/{foodName}")
-    @GET
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Evaluation> getFoodRatings(@PathParam("foodName") String foodName, @HeaderParam("authorization") String authString){
-		Person person= getAuthentication(authString);
-        if(person==null || BusinessService.getFood(foodName)==null)
-        	return null;
-        else
-        	return BusinessService.getFoodRatings(foodName);
-    }
+	    
+	    //TODO used for analysis
+	    @Path("/getall/f")
+	    @GET
+	    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	    public Response getAllFood(@Context HttpHeaders headers){
+	    	try {
+	        	System.out.println("get all foods");
+	        	
+	        	String authString = headers.getRequestHeader("authorization").get(0);
+	        	String token = authString.substring("Bearer".length()).trim();
+	        	
+	        	Person u=getAuthenticationToken(token);
+	        	if(!token.equals(u.getToken()))
+	        		throw new Exception();
+	        	return Response.ok(BusinessService.getAllFoods()).build();
+	    	}
+	    	catch (Exception e){
+	    		return Response.status(Response.Status.UNAUTHORIZED).build();
+	    	}
+	    }
    
     
     
@@ -147,32 +137,31 @@ public class FoodResource {
 	}
     
     
-    //TODO: not used, to be removed 
-    private Person getAuthentication(String authCredentials) {
-    	if (null == authCredentials)
-			return null;
-		// header value format will be "Basic encodedstring" for Basic
-		// authentication. Example "Basic YWRtaW46YWRtaW4="
-		final String encodedUserPassword = authCredentials.replaceFirst("Basic"
-				+ " ", "");
-		String usernameAndPassword = null;
-		try {
-			byte[] decodedBytes = Base64.getDecoder().decode(
-					encodedUserPassword);
-			usernameAndPassword = new String(decodedBytes, "UTF-8");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		final StringTokenizer tokenizer = new StringTokenizer(
-				usernameAndPassword, ":");
-		final String username = tokenizer.nextToken();
-		final String password = tokenizer.nextToken();
-
-		Person p=BusinessService.getPersonByU(username);
-		if(p.getPassword().equals(password))
-			return p;
-		else
-			return null;
-	}
+//    private Person getAuthentication(String authCredentials) {
+//    	if (null == authCredentials)
+//			return null;
+//		// header value format will be "Basic encodedstring" for Basic
+//		// authentication. Example "Basic YWRtaW46YWRtaW4="
+//		final String encodedUserPassword = authCredentials.replaceFirst("Basic"
+//				+ " ", "");
+//		String usernameAndPassword = null;
+//		try {
+//			byte[] decodedBytes = Base64.getDecoder().decode(
+//					encodedUserPassword);
+//			usernameAndPassword = new String(decodedBytes, "UTF-8");
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		final StringTokenizer tokenizer = new StringTokenizer(
+//				usernameAndPassword, ":");
+//		final String username = tokenizer.nextToken();
+//		final String password = tokenizer.nextToken();
+//
+//		Person p=BusinessService.getPersonByU(username);
+//		if(p.getPassword().equals(password))
+//			return p;
+//		else
+//			return null;
+//	}
 
 }
