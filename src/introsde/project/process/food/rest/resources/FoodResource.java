@@ -3,6 +3,7 @@ package introsde.project.process.food.rest.resources;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -61,7 +62,7 @@ public class FoodResource {
 	    }
 	    
 	    @Path("/add/rating/f/{itemId}/{rating}")
-	    @GET
+	    @POST
 	    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	    public Response addFoodRatings(@Context HttpHeaders headers,@PathParam("itemId") String itemId,@PathParam("rating") int rating) {
