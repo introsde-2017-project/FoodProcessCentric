@@ -31,8 +31,8 @@ public class UserResource {
     		BusinessService.addPerson(person);
     		return Response.ok().build();
        	
-    	} catch (Exception e) {
-        	return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+    	} catch (IllegalArgumentException e) {
+        	return Response.status(500, e.toString())
             		.build();
 		}
     }
