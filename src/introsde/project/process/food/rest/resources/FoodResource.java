@@ -130,10 +130,7 @@ public class FoodResource {
     
     
     private Person getAuthenticationToken(String token) throws Exception {
-		Person u=BusinessService.getPersonByToken(token);
-    	if(u == null) 
-    		throw new Exception();
-    	return u;
+    	return BusinessService.getPersonByToken(token);
 	}
     
     

@@ -1,7 +1,5 @@
 package introsde.project.process.food.rest.resources;
 
-
-import javax.persistence.EntityExistsException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,17 +26,12 @@ public class UserResource {
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Response newPerson(Person person) {
     	try {
-        System.out.println("Creating new person...");
-        if(BusinessService.getPersonByU(person.getUserName())!=null)
-        	throw new EntityExistsException();
-        if(BusinessService.addPerson(person)==null) 
-        	throw new Exception();
+    		System.out.println("Creating new person...");
         
-       	return Response.ok().build();
-    	}catch (EntityExistsException e) {
-            return Response.status(Response.Status.CONFLICT)
-            		.build();
-        } catch (Exception e) {
+    		BusinessService.addPerson(person);
+    		return Response.ok().build();
+       	
+    	} catch (Exception e) {
         	return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
             		.build();
 		}
@@ -154,10 +147,7 @@ public class UserResource {
 	}
 	
 	private Person getAuthPerson(String token) throws Exception {
-		Person u=BusinessService.getPersonByToken(token);
-    	if(u == null) 
-    		throw new Exception();
-    	return u;
+    	return BusinessService.getPersonByToken(token);
 	}
 
     
