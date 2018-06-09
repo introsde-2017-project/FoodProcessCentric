@@ -24,9 +24,8 @@ public class BusinessService {
 			return serviceInt.getUser(userName);
 		}catch (javax.xml.ws.soap.SOAPFaultException soapFaultException) {
 			javax.xml.soap.SOAPFault fault = soapFaultException.getFault();
-			System.out.println(fault.getFaultString());
+			throw new IllegalArgumentException(fault.getFaultString());
 		}
-		return null;
 	}
 
 	public static Person addPerson(Person person) {
@@ -36,6 +35,19 @@ public class BusinessService {
 			javax.xml.soap.SOAPFault fault = soapFaultException.getFault();
 			throw new IllegalArgumentException(fault.getFaultString());
 		}
+	}
+	
+	public static Person getPersonByToken(String token) {
+		try {
+			return serviceInt.getPersonByToken(token);
+		}catch (javax.xml.ws.soap.SOAPFaultException soapFaultException) {
+			javax.xml.soap.SOAPFault fault = soapFaultException.getFault();
+			throw new IllegalArgumentException(fault.getFaultString());
+		}
+	}
+	
+	public static void updatePerson(Person u) {
+		serviceInt.updateUser(u);
 	}
 	
 	//////////FOOD RECOMBEE DB
@@ -57,14 +69,6 @@ public class BusinessService {
 
 	public static List<ItemObject> getFoodByType(String foodType) {
 		return serviceInt.getItemsByType(dbName, foodType);
-	}
-
-	public static Person getPersonByToken(String token) {
-		return serviceInt.getPersonByToken(token);
-	}
-
-	public static void updatePerson(Person u) {
-		serviceInt.updateUser(u);
 	}
 
 	public static List<FoodType> getFoodTypes() {

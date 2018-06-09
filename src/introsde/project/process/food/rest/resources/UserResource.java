@@ -32,7 +32,7 @@ public class UserResource {
     		return Response.ok().build();
        	
     	} catch (IllegalArgumentException e) {
-        	return Response.status(500, e.toString())
+        	return Response.status(400, e.toString())
             		.build();
 		}
     }
@@ -106,7 +106,7 @@ public class UserResource {
         			.build();
 
         } catch (Exception e) {
-            return Response.status(Response.Status.UNAUTHORIZED)
+            return Response.status(401,e.toString())
             		.build();
         }
     }
