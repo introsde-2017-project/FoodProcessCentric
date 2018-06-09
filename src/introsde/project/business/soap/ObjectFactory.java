@@ -25,8 +25,8 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _GetAllItem_QNAME = new QName("http://soap.business.project.introsde/", "getAllItem");
-    private final static QName _AddNewRatingResponse_QNAME = new QName("http://soap.business.project.introsde/", "addNewRatingResponse");
     private final static QName _AddNewUser_QNAME = new QName("http://soap.business.project.introsde/", "addNewUser");
+    private final static QName _AddNewRatingResponse_QNAME = new QName("http://soap.business.project.introsde/", "addNewRatingResponse");
     private final static QName _GetItemsByType_QNAME = new QName("http://soap.business.project.introsde/", "getItemsByType");
     private final static QName _GetFoodTypesResponse_QNAME = new QName("http://soap.business.project.introsde/", "getFoodTypesResponse");
     private final static QName _GetItemsByTypeResponse_QNAME = new QName("http://soap.business.project.introsde/", "getItemsByTypeResponse");
@@ -34,13 +34,11 @@ public class ObjectFactory {
     private final static QName _GetRecommendations_QNAME = new QName("http://soap.business.project.introsde/", "getRecommendations");
     private final static QName _UpdateUserResponse_QNAME = new QName("http://soap.business.project.introsde/", "updateUserResponse");
     private final static QName _AddNewRating_QNAME = new QName("http://soap.business.project.introsde/", "addNewRating");
-    private final static QName _GetAllUser_QNAME = new QName("http://soap.business.project.introsde/", "getAllUser");
     private final static QName _GetPersonByTokenResponse_QNAME = new QName("http://soap.business.project.introsde/", "getPersonByTokenResponse");
     private final static QName _GetUser_QNAME = new QName("http://soap.business.project.introsde/", "getUser");
     private final static QName _GetPersonByToken_QNAME = new QName("http://soap.business.project.introsde/", "getPersonByToken");
     private final static QName _GetFoodTypes_QNAME = new QName("http://soap.business.project.introsde/", "getFoodTypes");
     private final static QName _GetUserResponse_QNAME = new QName("http://soap.business.project.introsde/", "getUserResponse");
-    private final static QName _GetAllUserResponse_QNAME = new QName("http://soap.business.project.introsde/", "getAllUserResponse");
     private final static QName _GetMovieGensResponse_QNAME = new QName("http://soap.business.project.introsde/", "getMovieGensResponse");
     private final static QName _GetMovieGens_QNAME = new QName("http://soap.business.project.introsde/", "getMovieGens");
     private final static QName _GetUserRatings_QNAME = new QName("http://soap.business.project.introsde/", "getUserRatings");
@@ -137,14 +135,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetAllUserResponse }
-     * 
-     */
-    public GetAllUserResponse createGetAllUserResponse() {
-        return new GetAllUserResponse();
-    }
-
-    /**
      * Create an instance of {@link GetMovieGensResponse }
      * 
      */
@@ -177,19 +167,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link AddNewRatingResponse }
-     * 
-     */
-    public AddNewRatingResponse createAddNewRatingResponse() {
-        return new AddNewRatingResponse();
-    }
-
-    /**
      * Create an instance of {@link AddNewUser }
      * 
      */
     public AddNewUser createAddNewUser() {
         return new AddNewUser();
+    }
+
+    /**
+     * Create an instance of {@link AddNewRatingResponse }
+     * 
+     */
+    public AddNewRatingResponse createAddNewRatingResponse() {
+        return new AddNewRatingResponse();
     }
 
     /**
@@ -206,14 +196,6 @@ public class ObjectFactory {
      */
     public GetAllItem createGetAllItem() {
         return new GetAllItem();
-    }
-
-    /**
-     * Create an instance of {@link GetAllUser }
-     * 
-     */
-    public GetAllUser createGetAllUser() {
-        return new GetAllUser();
     }
 
     /**
@@ -258,21 +240,21 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link AddNewRatingResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://soap.business.project.introsde/", name = "addNewRatingResponse")
-    public JAXBElement<AddNewRatingResponse> createAddNewRatingResponse(AddNewRatingResponse value) {
-        return new JAXBElement<AddNewRatingResponse>(_AddNewRatingResponse_QNAME, AddNewRatingResponse.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link AddNewUser }{@code >}}
      * 
      */
     @XmlElementDecl(namespace = "http://soap.business.project.introsde/", name = "addNewUser")
     public JAXBElement<AddNewUser> createAddNewUser(AddNewUser value) {
         return new JAXBElement<AddNewUser>(_AddNewUser_QNAME, AddNewUser.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddNewRatingResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.business.project.introsde/", name = "addNewRatingResponse")
+    public JAXBElement<AddNewRatingResponse> createAddNewRatingResponse(AddNewRatingResponse value) {
+        return new JAXBElement<AddNewRatingResponse>(_AddNewRatingResponse_QNAME, AddNewRatingResponse.class, null, value);
     }
 
     /**
@@ -339,15 +321,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllUser }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://soap.business.project.introsde/", name = "getAllUser")
-    public JAXBElement<GetAllUser> createGetAllUser(GetAllUser value) {
-        return new JAXBElement<GetAllUser>(_GetAllUser_QNAME, GetAllUser.class, null, value);
-    }
-
-    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetPersonByTokenResponse }{@code >}}
      * 
      */
@@ -390,15 +363,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.business.project.introsde/", name = "getUserResponse")
     public JAXBElement<GetUserResponse> createGetUserResponse(GetUserResponse value) {
         return new JAXBElement<GetUserResponse>(_GetUserResponse_QNAME, GetUserResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllUserResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://soap.business.project.introsde/", name = "getAllUserResponse")
-    public JAXBElement<GetAllUserResponse> createGetAllUserResponse(GetAllUserResponse value) {
-        return new JAXBElement<GetAllUserResponse>(_GetAllUserResponse_QNAME, GetAllUserResponse.class, null, value);
     }
 
     /**

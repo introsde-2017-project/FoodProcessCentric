@@ -36,31 +36,10 @@ public class BusinessService {
 		return serviceInt.addNewRating(dbName, rating);
 	}
 
-//	@SuppressWarnings("unchecked")
-//	public static Map<String,Object> getFood(String foodName) {
-//		return (Map<String, Object>) serviceInt.getItem(dbName, foodName);
-//	}
-
 	public static List<Evaluation> getUserRatings(Person u) {
 		return serviceInt.getUserRatings(dbName, u);
 	}
 
-//	//TODO not used
-//	public static boolean modifyRating(Person person, Evaluation rating) {
-//		return serviceInt.modifyRating(dbName, rating);
-//	}
-//
-//	//TODO not used
-//	public static List<Evaluation> getFoodRatings(String foodName) {
-//		return serviceInt.getItemRatings(dbName, foodName);
-//	}
-
-	//TODO not used
-	public static List<Person> getAllUsers() {
-		return serviceInt.getAllUser();
-	}
-
-	//TODO not used
 	public static List<ItemObject> getAllFoods() {
 		return serviceInt.getAllItem(dbName);
 	}

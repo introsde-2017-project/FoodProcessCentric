@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -21,10 +22,10 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="email" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="firstName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="foodTypes" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="foodTypes" type="{http://soap.local.data.project.introsde/}foodType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="idPerson" type="{http://www.w3.org/2001/XMLSchema}int"/>
  *         &lt;element name="lastName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="movieGens" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="movieGens" type="{http://soap.local.data.project.introsde/}movieGen" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="password" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="token" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="userName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -53,11 +54,13 @@ public class Person {
     protected String email;
     protected String firstName;
     @XmlElement(nillable = true)
-    protected List<String> foodTypes;
+    @XmlSchemaType(name = "string")
+    protected List<FoodType> foodTypes;
     protected int idPerson;
     protected String lastName;
     @XmlElement(nillable = true)
-    protected List<String> movieGens;
+    @XmlSchemaType(name = "string")
+    protected List<MovieGen> movieGens;
     protected String password;
     protected String token;
     protected String userName;
@@ -128,13 +131,13 @@ public class Person {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link FoodType }
      * 
      * 
      */
-    public List<String> getFoodTypes() {
+    public List<FoodType> getFoodTypes() {
         if (foodTypes == null) {
-            foodTypes = new ArrayList<String>();
+            foodTypes = new ArrayList<FoodType>();
         }
         return this.foodTypes;
     }
@@ -197,13 +200,13 @@ public class Person {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link String }
+     * {@link MovieGen }
      * 
      * 
      */
-    public List<String> getMovieGens() {
+    public List<MovieGen> getMovieGens() {
         if (movieGens == null) {
-            movieGens = new ArrayList<String>();
+            movieGens = new ArrayList<MovieGen>();
         }
         return this.movieGens;
     }

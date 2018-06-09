@@ -35,18 +35,24 @@ public interface BusinessInterface {
 
     /**
      * 
+     * @param quantity
      * @param person
+     * @param dbName
      * @return
-     *     returns introsde.project.data.local.soap.Person
+     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
      */
     @WebMethod
-    @WebResult(name = "Person", targetNamespace = "")
-    @RequestWrapper(localName = "addNewUser", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.AddNewUser")
-    @ResponseWrapper(localName = "addNewUserResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.AddNewUserResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/addNewUserRequest", output = "http://soap.business.project.introsde/BusinessInterface/addNewUserResponse")
-    public Person addNewUser(
+    @WebResult(name = "recommendations", targetNamespace = "")
+    @RequestWrapper(localName = "getRecommendations", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetRecommendations")
+    @ResponseWrapper(localName = "getRecommendationsResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetRecommendationsResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getRecommendationsRequest", output = "http://soap.business.project.introsde/BusinessInterface/getRecommendationsResponse")
+    public List<ItemObject> getRecommendations(
+        @WebParam(name = "dbName", targetNamespace = "")
+        RecombeeDBType dbName,
         @WebParam(name = "person", targetNamespace = "")
-        Person person);
+        Person person,
+        @WebParam(name = "quantity", targetNamespace = "")
+        int quantity);
 
     /**
      * 
@@ -77,6 +83,72 @@ public interface BusinessInterface {
     public Person updateUser(
         @WebParam(name = "person", targetNamespace = "")
         Person person);
+
+    /**
+     * 
+     * @param itemName
+     * @param dbName
+     * @return
+     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
+     */
+    @WebMethod
+    @WebResult(name = "ListofStrings", targetNamespace = "")
+    @RequestWrapper(localName = "getItemsByType", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemsByType")
+    @ResponseWrapper(localName = "getItemsByTypeResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemsByTypeResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getItemsByTypeRequest", output = "http://soap.business.project.introsde/BusinessInterface/getItemsByTypeResponse")
+    public List<ItemObject> getItemsByType(
+        @WebParam(name = "dbName", targetNamespace = "")
+        RecombeeDBType dbName,
+        @WebParam(name = "itemName", targetNamespace = "")
+        String itemName);
+
+    /**
+     * 
+     * @param token
+     * @return
+     *     returns introsde.project.data.local.soap.Person
+     */
+    @WebMethod
+    @WebResult(name = "Person", targetNamespace = "")
+    @RequestWrapper(localName = "getPersonByToken", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetPersonByToken")
+    @ResponseWrapper(localName = "getPersonByTokenResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetPersonByTokenResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getPersonByTokenRequest", output = "http://soap.business.project.introsde/BusinessInterface/getPersonByTokenResponse")
+    public Person getPersonByToken(
+        @WebParam(name = "token", targetNamespace = "")
+        String token);
+
+    /**
+     * 
+     * @param person
+     * @param dbName
+     * @return
+     *     returns java.util.List<introsde.project.adopter.recombee.soap.Evaluation>
+     */
+    @WebMethod
+    @WebResult(name = "ratingList", targetNamespace = "")
+    @RequestWrapper(localName = "getUserRatings", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetUserRatings")
+    @ResponseWrapper(localName = "getUserRatingsResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetUserRatingsResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getUserRatingsRequest", output = "http://soap.business.project.introsde/BusinessInterface/getUserRatingsResponse")
+    public List<Evaluation> getUserRatings(
+        @WebParam(name = "dbName", targetNamespace = "")
+        RecombeeDBType dbName,
+        @WebParam(name = "person", targetNamespace = "")
+        Person person);
+
+    /**
+     * 
+     * @param dbName
+     * @return
+     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
+     */
+    @WebMethod
+    @WebResult(name = "ListofStrings", targetNamespace = "")
+    @RequestWrapper(localName = "getAllItem", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItem")
+    @ResponseWrapper(localName = "getAllItemResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItemResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getAllItemRequest", output = "http://soap.business.project.introsde/BusinessInterface/getAllItemResponse")
+    public List<ItemObject> getAllItem(
+        @WebParam(name = "dbName", targetNamespace = "")
+        RecombeeDBType dbName);
 
     /**
      * 
@@ -123,100 +195,16 @@ public interface BusinessInterface {
     /**
      * 
      * @param person
-     * @param dbName
-     * @return
-     *     returns java.util.List<introsde.project.adopter.recombee.soap.Evaluation>
-     */
-    @WebMethod
-    @WebResult(name = "ratingList", targetNamespace = "")
-    @RequestWrapper(localName = "getUserRatings", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetUserRatings")
-    @ResponseWrapper(localName = "getUserRatingsResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetUserRatingsResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getUserRatingsRequest", output = "http://soap.business.project.introsde/BusinessInterface/getUserRatingsResponse")
-    public List<Evaluation> getUserRatings(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "person", targetNamespace = "")
-        Person person);
-
-    /**
-     * 
-     * @param dbName
-     * @return
-     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
-     */
-    @WebMethod
-    @WebResult(name = "ListofStrings", targetNamespace = "")
-    @RequestWrapper(localName = "getAllItem", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItem")
-    @ResponseWrapper(localName = "getAllItemResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllItemResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getAllItemRequest", output = "http://soap.business.project.introsde/BusinessInterface/getAllItemResponse")
-    public List<ItemObject> getAllItem(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName);
-
-    /**
-     * 
-     * @param quantity
-     * @param person
-     * @param dbName
-     * @return
-     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
-     */
-    @WebMethod
-    @WebResult(name = "recommendations", targetNamespace = "")
-    @RequestWrapper(localName = "getRecommendations", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetRecommendations")
-    @ResponseWrapper(localName = "getRecommendationsResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetRecommendationsResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getRecommendationsRequest", output = "http://soap.business.project.introsde/BusinessInterface/getRecommendationsResponse")
-    public List<ItemObject> getRecommendations(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "person", targetNamespace = "")
-        Person person,
-        @WebParam(name = "quantity", targetNamespace = "")
-        int quantity);
-
-    /**
-     * 
-     * @param itemName
-     * @param dbName
-     * @return
-     *     returns java.util.List<introsde.project.adopter.recombee.soap.ItemObject>
-     */
-    @WebMethod
-    @WebResult(name = "ListofStrings", targetNamespace = "")
-    @RequestWrapper(localName = "getItemsByType", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemsByType")
-    @ResponseWrapper(localName = "getItemsByTypeResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetItemsByTypeResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getItemsByTypeRequest", output = "http://soap.business.project.introsde/BusinessInterface/getItemsByTypeResponse")
-    public List<ItemObject> getItemsByType(
-        @WebParam(name = "dbName", targetNamespace = "")
-        RecombeeDBType dbName,
-        @WebParam(name = "itemName", targetNamespace = "")
-        String itemName);
-
-    /**
-     * 
-     * @return
-     *     returns java.util.List<introsde.project.data.local.soap.Person>
-     */
-    @WebMethod
-    @WebResult(name = "PersonList", targetNamespace = "")
-    @RequestWrapper(localName = "getAllUser", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllUser")
-    @ResponseWrapper(localName = "getAllUserResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetAllUserResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getAllUserRequest", output = "http://soap.business.project.introsde/BusinessInterface/getAllUserResponse")
-    public List<Person> getAllUser();
-
-    /**
-     * 
-     * @param token
      * @return
      *     returns introsde.project.data.local.soap.Person
      */
     @WebMethod
     @WebResult(name = "Person", targetNamespace = "")
-    @RequestWrapper(localName = "getPersonByToken", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetPersonByToken")
-    @ResponseWrapper(localName = "getPersonByTokenResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.GetPersonByTokenResponse")
-    @Action(input = "http://soap.business.project.introsde/BusinessInterface/getPersonByTokenRequest", output = "http://soap.business.project.introsde/BusinessInterface/getPersonByTokenResponse")
-    public Person getPersonByToken(
-        @WebParam(name = "token", targetNamespace = "")
-        String token);
+    @RequestWrapper(localName = "addNewUser", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.AddNewUser")
+    @ResponseWrapper(localName = "addNewUserResponse", targetNamespace = "http://soap.business.project.introsde/", className = "introsde.project.business.soap.AddNewUserResponse")
+    @Action(input = "http://soap.business.project.introsde/BusinessInterface/addNewUserRequest", output = "http://soap.business.project.introsde/BusinessInterface/addNewUserResponse")
+    public Person addNewUser(
+        @WebParam(name = "person", targetNamespace = "")
+        Person person);
 
 }
