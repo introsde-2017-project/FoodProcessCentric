@@ -20,7 +20,13 @@ public class BusinessService {
 	
 	/////////LOCAL DB
 	public static Person getPersonByU(String userName) {
-		return serviceInt.getUser(userName);
+		try {
+			return serviceInt.getUser(userName);
+		}catch (javax.xml.ws.soap.SOAPFaultException soapFaultException) {
+			javax.xml.soap.SOAPFault fault = soapFaultException.getFault();
+			System.out.println(fault.getFaultString());
+		}
+		return null;
 	}
 
 	public static Person addPerson(Person person) {
