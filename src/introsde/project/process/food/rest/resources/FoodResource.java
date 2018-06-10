@@ -128,7 +128,6 @@ public class FoodResource {
 	    }
    
     
-    
     private Person getAuthenticationToken(String token) throws Exception {
     	return BusinessService.getPersonByToken(token);
 	}
